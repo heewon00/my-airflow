@@ -12,7 +12,7 @@ resources = k8s.V1ResourceRequirements(
     requests={"memory": "500Mi", "cpu": "0.5"},
 )
 with DAG(
-    "last example_kubernetes_python",
+    "last_example_kubernetes_python",
     schedule_interval=None,
     start_date=datetime.datetime(2020, 2, 2),
     tags=["example"],
