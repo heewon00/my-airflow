@@ -6,6 +6,11 @@ from kubernetes.client import models as k8s
 #    KubernetesPodOperator,
 #)
 
+import os
+import sys
+
+sys.path.append('/bitnami/airflow/kube-config') # kube_config
+
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
 resources = k8s.V1ResourceRequirements(
@@ -22,6 +27,9 @@ with DAG(
     run_python = KubernetesPodOperator(
         task_id="run_python_script",
         name="run_python_script",
+        in_cluster=False,
+        cluster_context='k3s-test',
+        config_file='/bitnami/airflow/kube-config/config_yujeong',
         namespace="default",
         image="python:3.10-slim",  # 이 이미지에 필요한 파이썬 스크립트와 의존성이 포함되어 있어야 합니다.
         is_delete_operator_pod=True,
