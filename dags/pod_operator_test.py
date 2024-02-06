@@ -37,7 +37,7 @@ start = DummyOperator(task_id="start", dag=dag)
 run = KubernetesPodOperator(
     task_id="kubernetes-pod-operator",
     namespace='airflow',
-    in_cluster=False,
+    in_cluster=False,
     image='nginx',
     #image='ghcr.io/rohminji/batch:master',
     name="db-job",
