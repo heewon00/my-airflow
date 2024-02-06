@@ -10,8 +10,6 @@ from airflow.kubernetes.secret import Secret
 #)
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
-#CLUSTER_NAME = os.environ.get("KUBERNETES_CLUSTER_NAME")
-
 dag_id = 'kubernetes-dag'
 
 task_default_args = {
@@ -39,14 +37,12 @@ start = DummyOperator(task_id="start", dag=dag)
 run = KubernetesPodOperator(
     task_id="kubernetes-pod-operator",
     namespace='airflow',
-    in_cluster=True,
+    in_cluster=False,
     image='nginx',
-    #cluster_name=CLUSTER_NAME,
     #image='ghcr.io/rohminji/batch:master',
     name="db-job",
     is_delete_operator_pod=True,
     kubernetes_conn_id="kubernetes_default",
-    # config_file="/home/airflow/composer_kube_config",
     get_logs=True,
     # resources = k8s_resource_requirements,
     dag=dag,
