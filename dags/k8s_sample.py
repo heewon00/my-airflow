@@ -26,7 +26,7 @@ with DAG(
 
     run_python = KubernetesPodOperator(
         task_id="run_python_script",
-        name="run_python_script",
+        name="run_python_edu",
         in_cluster=False,
         cluster_context='k3s-test',
         config_file='/bitnami/airflow/kube-config/config_yujeong',
