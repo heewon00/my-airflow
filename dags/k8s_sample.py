@@ -30,7 +30,7 @@ with DAG(
         in_cluster=False,
         cluster_context='k3s-test',
         config_file='/bitnami/airflow/kube-config/config_yujeong',
-        namespace="airflow",
+        namespace="default",
         image="python:3.10-slim",  # 이 이미지에 필요한 파이썬 스크립트와 의존성이 포함되어 있어야 합니다.
         is_delete_operator_pod=False,
         cmds=["python", "-c"],
